@@ -1,10 +1,8 @@
 package com.jiejue.diytomcat.util;
 
-import org.omg.CORBA.TRANSACTION_MODE;
 
 import java.io.*;
 import java.net.InetSocketAddress;
-import java.net.MalformedURLException;
 import java.net.Socket;
 import java.net.URL;
 import java.util.Arrays;
@@ -14,8 +12,8 @@ import java.util.Set;
 
 public class MiniBrowser {
 
-    public static void main(String[] args) {
-        String url = "http://how2j.cn.diytomcat.html";
+    public static void main(String[] args) throws Exception {
+        String url = "http://static.how2j.cn/diytomcat.html";
         String contentString = getContentString(url, false);
         System.out.println(contentString);
         String httpString =  getHttpString(url, false);
@@ -46,7 +44,6 @@ public class MiniBrowser {
         try {
             return  new String(result, "utf-8").trim();
         } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
 
             return null;
         }
@@ -68,9 +65,11 @@ public class MiniBrowser {
             }
         }
 
-        if(pos == -1){
+        if(-1 == pos){
             return  null;
         }
+
+        pos += doubleReturn.length;
 
         byte[] result = Arrays.copyOfRange(response, pos, response.length);
 
@@ -103,13 +102,13 @@ public class MiniBrowser {
             }
             InetSocketAddress inetSocketAddress = new InetSocketAddress(u.getHost(), port);
             client.connect(inetSocketAddress, 1000);
-            Map<String, Object> requestHeaders = new HashMap<>();
+            Map<String, String> requestHeaders = new HashMap<>();
 
 
             requestHeaders.put("Host", u.getHost() + ":" + port);
-            requestHeaders.put("Accept", "test/html");
+            requestHeaders.put("Accept", "text/html");
             requestHeaders.put("Connection", "close");
-            requestHeaders.put("User-Agent", "JieJue mini Bower / java1.8");
+            requestHeaders.put("User-Agent", "JieJue mini brower / java1.8");
 
             if(gzip){
                 requestHeaders.put("Accept-Encoding", "gzip");
@@ -120,14 +119,14 @@ public class MiniBrowser {
                 path = "/";
             }
 
-            String firstLine = "GET" + path + " HTTP/1.1\r\n";
+            String firstLine = "GET " + path + " HTTP/1.1\r\n";
 
             StringBuffer httpRequestString = new StringBuffer();
             httpRequestString.append(firstLine);
             Set<String> headers = requestHeaders.keySet();
             for (String header: headers ) {
-                String headLine = header + ":" + requestHeaders.get(headers) + "\r\n";
-                httpRequestString.append(headLine);
+                String headerLine = header + ":" + requestHeaders.get(header) + "\r\n";
+                httpRequestString.append(headerLine);
 
             }
 
