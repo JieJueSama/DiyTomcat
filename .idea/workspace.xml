@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f2474631-51de-4bd0-b37d-af84871743a1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/diytomcat/com/jiejue/diytomcat/util/MiniBrowser.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/diytomcat/com/jiejue/diytomcat/Bootstrap.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/diytomcat/com/jiejue/diytomcat/Bootstrap.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/jiejue/diytomcat/Bootstrap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/jiejue/diytomcat/Bootstrap.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,6 +24,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="DONT_SYNC" />
+    <option name="SET_USER_NAME_GLOBALLY" value="false" />
   </component>
   <component name="ProjectId" id="1izLcO64GBfrXjVcVuPBn09ZCej" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -81,8 +84,17 @@
       <option name="presentableId" value="Default" />
       <updated>1602905551611</updated>
       <workItem from="1602905558477" duration="2219000" />
-      <workItem from="1603032783937" duration="3161000" />
+      <workItem from="1603032783937" duration="3337000" />
+      <workItem from="1603116270621" duration="1932000" />
     </task>
+    <task id="LOCAL-00001" summary="mini浏览器开发">
+      <created>1603036093421</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1603036093422</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -93,10 +105,16 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="mini浏览器开发" />
+    <option name="LAST_COMMIT_MESSAGE" value="mini浏览器开发" />
   </component>
 </project>

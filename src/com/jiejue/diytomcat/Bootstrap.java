@@ -36,7 +36,7 @@ public class Bootstrap {
                 byte[] buffer = new byte[bufferSize];
                 is.read(buffer);
                 //把字节数组转换成字符串，并且打印出来
-                String requestString = new String(buffer + "utf-8");
+                String requestString = new String(buffer, "utf-8");
                 System.out.println("浏览器的输入信息：\r\n" + requestString);
                 //打开输出流，准备给客户端输出信息
                 OutputStream os = s.getOutputStream();
