@@ -1,11 +1,16 @@
 package com.jiejue.diytomcat;
 
+import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.NetUtil;
+import cn.hutool.core.util.StrUtil;
 import com.jiejue.diytomcat.http.Request;
+import com.jiejue.diytomcat.http.Response;
+import com.jiejue.diytomcat.util.Constant;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -43,7 +48,7 @@ public class Bootstrap {
                 System.out.println("浏览器的输入信息：\r\n" + request.getRequestString());
                 System.out.println("uri:" + request.getUri());
                 //打开输出流，准备给客户端输出信息
-                OutputStream os = s.getOutputStream();
+//                OutputStream os = s.getOutputStream();
                 /*
                 HTTP请求头固定格式：
                     ①请求方法 + 空格 + URL +空格+ 协议版本 +return && next
@@ -54,13 +59,21 @@ public class Bootstrap {
                     ②头部字段名称：值+return && next
                     ③return && next
                 */
-                String response_head = "HTTP/1.1 200 OK\r\n" + "Content-Type: text/html\r\n\r\n";
-                String responseString = "HELLO DIY tomcat";
-                responseString = response_head + responseString;
+//                String response_head = "HTTP/1.1 200 OK\r\n" + "Content-Type: text/html\r\n\r\n";
+//                String responseString = "HELLO DIY tomcat";
+//                responseString = response_head + responseString;
 
                 //将字符串转成字节数组发出去
-                os.write(responseString.getBytes());
-                os.flush();
+//                os.write(responseString.getBytes());
+//                os.flush();
+
+                Response response = new Response();
+                String html = "HELLO DIY tomcat";
+                response.getWriter().println(html);
+
+                handle200(s, response);
+
+
                 //关闭客户端对应的socket
                 s.close();
             }
@@ -69,5 +82,23 @@ public class Bootstrap {
 
             e.printStackTrace();
         }
+    }
+
+    private static void handle200(Socket s, Response response) throws IOException {
+        String contentType = response.getContentType();
+        String headText = Constant.response_head_202;
+        headText = StrUtil.format(headText, contentType);
+        byte[] head = headText.getBytes();
+
+        byte[] body = response.getBody();
+
+        byte[] responseBytes = new byte[head.length + body.length];
+        ArrayUtil.copy(head, 0, responseBytes, 0, head.length);
+        ArrayUtil.copy(body, 0, responseBytes, head.length, body.length);
+
+        OutputStream os = s.getOutputStream();
+        os.write(responseBytes);
+        s.close();
+
     }
 }
