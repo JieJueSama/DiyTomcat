@@ -1,6 +1,7 @@
 package com.jiejue.diytomcat;
 
 import cn.hutool.core.util.NetUtil;
+import com.jiejue.diytomcat.http.Request;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -29,15 +30,18 @@ public class Bootstrap {
             while(true){
                 //表示收到一个浏览器客户端请求
                 Socket s = ss.accept();
-                //打开输入流，准备接受客户端的请求
-                InputStream is = s.getInputStream();
+
+                Request request = new Request(s);
+//                //打开输入流，准备接受客户端的请求
+//                InputStream is = s.getInputStream();
                 //准备一个长度是1024的字节数组，把浏览器的信息读出来放进去，浏览器提交的可能短语或者长于1024，这种做法后期有待改进
-                int bufferSize = 1024;
-                byte[] buffer = new byte[bufferSize];
-                is.read(buffer);
+//                int bufferSize = 1024;
+//                byte[] buffer = new byte[bufferSize];
+//                is.read(buffer);
                 //把字节数组转换成字符串，并且打印出来
-                String requestString = new String(buffer, "utf-8");
-                System.out.println("浏览器的输入信息：\r\n" + requestString);
+//                String requestString = new String(buffer, "utf-8");
+                System.out.println("浏览器的输入信息：\r\n" + request.getRequestString());
+                System.out.println("uri:" + request.getUri());
                 //打开输出流，准备给客户端输出信息
                 OutputStream os = s.getOutputStream();
                 /*
