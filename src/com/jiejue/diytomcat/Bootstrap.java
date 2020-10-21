@@ -1,31 +1,40 @@
 package com.jiejue.diytomcat;
 
+import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.NetUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.log.LogFactory;
+import cn.hutool.system.SystemUtil;
 import com.jiejue.diytomcat.http.Request;
 import com.jiejue.diytomcat.http.Response;
 import com.jiejue.diytomcat.util.Constant;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
+
+
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.sql.Struct;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Set;
 
 public class Bootstrap {
 
     public static void main(String[] args) {
         try {
+
+            logJVM();
+
             //本服务器使用的端口号是18080
             int port = 18080;
 
             //用来判断18080端口是否被占用，如果被占用，返回false，不是则是true
-            if(!NetUtil.isUsableLocalPort(port)){
-                System.out.println(port + "端口已经被占用，请检查！");
-                return;
-            }
+//            if(!NetUtil.isUsableLocalPort(port)){
+//                System.out.println(port + "端口已经被占用，请检查！");
+//                return;
+//            }
 
             //在端口18080上启动ServerScoket
             //服务器和浏览器是通过Socket进行通信的，所以这里需要启动一个ServerScoket
@@ -37,40 +46,40 @@ public class Bootstrap {
                 Socket s = ss.accept();
 
                 Request request = new Request(s);
-//                //打开输入流，准备接受客户端的请求
-//                InputStream is = s.getInputStream();
-                //准备一个长度是1024的字节数组，把浏览器的信息读出来放进去，浏览器提交的可能短语或者长于1024，这种做法后期有待改进
-//                int bufferSize = 1024;
-//                byte[] buffer = new byte[bufferSize];
-//                is.read(buffer);
-                //把字节数组转换成字符串，并且打印出来
-//                String requestString = new String(buffer, "utf-8");
+
                 System.out.println("浏览器的输入信息：\r\n" + request.getRequestString());
                 System.out.println("uri:" + request.getUri());
-                //打开输出流，准备给客户端输出信息
-//                OutputStream os = s.getOutputStream();
-                /*
-                HTTP请求头固定格式：
-                    ①请求方法 + 空格 + URL +空格+ 协议版本 +return && next
-                    ②头部字段名称：值+return && next
-                    ③return && next
-                HTTP响应头固定格式：
-                    ①协议版本 + 空格 +状态码+空格+状态码描述+return && next
-                    ②头部字段名称：值+return && next
-                    ③return && next
-                */
-//                String response_head = "HTTP/1.1 200 OK\r\n" + "Content-Type: text/html\r\n\r\n";
-//                String responseString = "HELLO DIY tomcat";
-//                responseString = response_head + responseString;
 
-                //将字符串转成字节数组发出去
-//                os.write(responseString.getBytes());
-//                os.flush();
 
                 Response response = new Response();
-                String html = "HELLO DIY tomcat";
-                response.getWriter().println(html);
 
+                //首先判断uri是否为空，如果为空就不处理
+                String uri = request.getUri();
+                if (null == uri){
+                    continue;
+                }
+
+
+                System.out.println(uri);
+                if ("/".equals(uri)){
+                    String html = "HELLO DIY tomcat";
+                    response.getWriter().println(html);
+                }
+                else {
+                    //接着处理文件，首先取出文件名，比如访问的是/a.html 那么文件名是a.html
+                    String fileName = StrUtil.removePrefix(uri, "/");
+                    //获取对应的文件对象file
+                    File file = FileUtil.file(Constant.rootFolder, fileName);
+                    if (file.exists()){
+                        //如果文件存在，那么获取内容通过response.getWriter进行打印
+                        String fileContent = FileUtil.readUtf8String(file);
+                        response.getWriter().println(fileContent);
+                    }
+                    else {
+                        //如果文件不存在，那么打印File Not Found
+                        response.getWriter().println("File Not Found");
+                    }
+                }
                 handle200(s, response);
 
 
@@ -79,8 +88,27 @@ public class Bootstrap {
             }
 
         }catch(IOException e){
-
+            LogFactory.get().error(e);
             e.printStackTrace();
+        }
+    }
+
+    private static void logJVM(){
+        Map<String, String> infos = new LinkedHashMap<>();
+        infos.put("Server version", "JieJue DiyTomcat/1.01");
+        infos.put("Server built", "2020-10-21 23:20:00");
+        infos.put("Server Number", "1.0.1");
+        infos.put("OS Name\t", SystemUtil.get("os.name"));
+        infos.put("OS Version", SystemUtil.get("os.version"));
+        infos.put("Architecture", SystemUtil.get("os.arch"));
+        infos.put("Java Home", SystemUtil.get("java.home"));
+        infos.put("JVM Version", SystemUtil.get("java.runtime.version"));
+        infos.put("JVM Vendor", SystemUtil.get("java.vm.specification.vendor"));
+
+
+        Set<String> keys = infos.keySet();
+        for (String key : keys) {
+            LogFactory.get().info(key + ":\t\t" + infos.get(key));
         }
     }
 

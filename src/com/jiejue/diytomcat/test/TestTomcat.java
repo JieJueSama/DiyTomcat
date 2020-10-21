@@ -35,6 +35,12 @@ public class TestTomcat {
         Assert.assertEquals(html, "HELLO DIY tomcat");
     }
 
+    @Test
+    public void testaHtml(){
+        String html = getContentString("/a.html");
+        Assert.assertEquals(html, "Hello DIY Tomcat from a.html");
+    }
+
 
     //工具方法，用来获取网页返回
     private String getContentString(String uri){
