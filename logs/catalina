@@ -1,36 +1,26 @@
-10 21, 2020 23:29:42 下午 com.jiejue.diytomcat.Bootstrap logJVM
+10 22, 2020 23:10:18 下午 com.jiejue.diytomcat.Bootstrap logJVM
 INFO : Server version:		JieJue DiyTomcat/1.01
-10 21, 2020 23:29:42 下午 com.jiejue.diytomcat.Bootstrap logJVM
+10 22, 2020 23:10:18 下午 com.jiejue.diytomcat.Bootstrap logJVM
 INFO : Server built:		2020-10-21 23:20:00
-10 21, 2020 23:29:42 下午 com.jiejue.diytomcat.Bootstrap logJVM
+10 22, 2020 23:10:18 下午 com.jiejue.diytomcat.Bootstrap logJVM
 INFO : Server Number:		1.0.1
-10 21, 2020 23:29:42 下午 com.jiejue.diytomcat.Bootstrap logJVM
+10 22, 2020 23:10:18 下午 com.jiejue.diytomcat.Bootstrap logJVM
 INFO : OS Name	:		Windows 10
-10 21, 2020 23:29:42 下午 com.jiejue.diytomcat.Bootstrap logJVM
+10 22, 2020 23:10:18 下午 com.jiejue.diytomcat.Bootstrap logJVM
 INFO : OS Version:		10.0
-10 21, 2020 23:29:42 下午 com.jiejue.diytomcat.Bootstrap logJVM
+10 22, 2020 23:10:18 下午 com.jiejue.diytomcat.Bootstrap logJVM
 INFO : Architecture:		x86
-10 21, 2020 23:29:42 下午 com.jiejue.diytomcat.Bootstrap logJVM
+10 22, 2020 23:10:18 下午 com.jiejue.diytomcat.Bootstrap logJVM
 INFO : Java Home:		D:\Tools\JDK\jre
-10 21, 2020 23:29:42 下午 com.jiejue.diytomcat.Bootstrap logJVM
+10 22, 2020 23:10:18 下午 com.jiejue.diytomcat.Bootstrap logJVM
 INFO : JVM Version:		1.8.0_65-b17
-10 21, 2020 23:29:42 下午 com.jiejue.diytomcat.Bootstrap logJVM
-INFO : JVM Folder:		null
-10 21, 2020 23:31:02 下午 com.jiejue.diytomcat.Bootstrap logJVM
-INFO : Server version:		JieJue DiyTomcat/1.01
-10 21, 2020 23:31:02 下午 com.jiejue.diytomcat.Bootstrap logJVM
-INFO : Server built:		2020-10-21 23:20:00
-10 21, 2020 23:31:02 下午 com.jiejue.diytomcat.Bootstrap logJVM
-INFO : Server Number:		1.0.1
-10 21, 2020 23:31:02 下午 com.jiejue.diytomcat.Bootstrap logJVM
-INFO : OS Name	:		Windows 10
-10 21, 2020 23:31:02 下午 com.jiejue.diytomcat.Bootstrap logJVM
-INFO : OS Version:		10.0
-10 21, 2020 23:31:02 下午 com.jiejue.diytomcat.Bootstrap logJVM
-INFO : Architecture:		x86
-10 21, 2020 23:31:02 下午 com.jiejue.diytomcat.Bootstrap logJVM
-INFO : Java Home:		D:\Tools\JDK\jre
-10 21, 2020 23:31:02 下午 com.jiejue.diytomcat.Bootstrap logJVM
-INFO : JVM Version:		1.8.0_65-b17
-10 21, 2020 23:31:02 下午 com.jiejue.diytomcat.Bootstrap logJVM
+10 22, 2020 23:10:18 下午 com.jiejue.diytomcat.Bootstrap logJVM
 INFO : JVM Vendor:		Oracle Corporation
+10 22, 2020 23:10:18 下午 com.jiejue.diytomcat.catalina.Context <init>
+INFO : Deploying web application directory D:\Project\Java\diytomcat\webapps\a
+10 22, 2020 23:10:18 下午 com.jiejue.diytomcat.catalina.Context <init>
+INFO : Deployment of web application directory D:\Project\Java\diytomcat\webapps\a has finished in 0 ms
+10 22, 2020 23:10:18 下午 com.jiejue.diytomcat.catalina.Context <init>
+INFO : Deploying web application directory D:\Project\Java\diytomcat\webapps\ROOT
+10 22, 2020 23:10:18 下午 com.jiejue.diytomcat.catalina.Context <init>
+INFO : Deployment of web application directory D:\Project\Java\diytomcat\webapps\ROOT has finished in 0 ms
